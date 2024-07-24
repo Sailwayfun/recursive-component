@@ -48,14 +48,16 @@ function Folder({ folder }: { folder: Folder }) {
         {folder.folders && folder.folders.length > 0 && (
           <button onClick={toggleChildren}>
             <ChevronRightIcon
-              className={`ml-5 size-4 cursor-pointer transition-transform ${
+              className={`size-4 cursor-pointer transition-transform ${
                 isOpen && "rotate-90"
               }`}
             />
           </button>
         )}
         {folder.folders && <FolderIcon className="size-6 text-sky-600" />}
-        {!folder.folders && <DocumentIcon className="size-6 text-gray-600" />}
+        {!folder.folders && (
+          <DocumentIcon className="ml-5 size-6 text-gray-600" />
+        )}
         {folder.name}
       </span>
 
