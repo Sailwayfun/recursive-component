@@ -1,41 +1,41 @@
-import { FolderIcon } from "@heroicons/react/24/solid";
 import { DocumentIcon } from "@heroicons/react/24/solid";
 import { ChevronRightIcon } from "@heroicons/react/16/solid";
+import { FolderIcon } from "@heroicons/react/24/solid";
 
 import { useState } from "react";
 
-interface Folder {
+interface Node {
   name: string;
-  folders?: Folder[];
+  nodes?: Node[];
 }
 
-const folders: Folder[] = [
+const folders: Node[] = [
   {
     name: "Home",
-    folders: [
+    nodes: [
       {
         name: "Movies",
-        folders: [{ name: "Kimi No Na Wa" }, { name: "Weathering with You" }],
+        nodes: [{ name: "Kimi No Na Wa" }, { name: "Weathering with You" }],
       },
-      { name: "Music", folders: [] },
-      { name: "Pictures", folders: [{ name: "pikachu.jpg" }] },
+      { name: "Music", nodes: [] },
+      { name: "Pictures", nodes: [{ name: "pikachu.jpg" }] },
     ],
   },
 ];
 
-export default function Folders() {
+export default function Nodes() {
   return (
     <div className="p-8 max-w-sm mx-auto">
       <ul>
-        {folders.map((folder) => (
-          <Folder folder={folder} key={folder.name} />
+        {folders.map((node) => (
+          <FileSystemItem node={node} key={node.name} />
         ))}
       </ul>
     </div>
   );
 }
 
-function Folder({ folder }: { folder: Folder }) {
+function FileSystemItem({ node }: { node: Node }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleChildren() {
@@ -43,9 +43,9 @@ function Folder({ folder }: { folder: Folder }) {
   }
 
   return (
-    <li className="my-1.5" key={folder.name}>
+    <li className="my-1.5" key={node.name}>
       <span className="flex items-center gap-1.5">
-        {folder.folders && folder.folders.length > 0 && (
+        {node.nodes && node.nodes.length > 0 && (
           <button onClick={toggleChildren}>
             <ChevronRightIcon
               className={`size-4 cursor-pointer transition-transform ${
@@ -54,23 +54,21 @@ function Folder({ folder }: { folder: Folder }) {
             />
           </button>
         )}
-        {folder.folders && (
+        {node.nodes && (
           <FolderIcon
             className={`size-6 text-sky-600 ${
-              folder.folders.length === 0 && "ml-[1.4rem]"
+              node.nodes.length === 0 && "ml-[1.4rem]"
             }`}
           />
         )}
-        {!folder.folders && (
-          <DocumentIcon className="ml-5 size-6 text-gray-600" />
-        )}
-        {folder.name}
+        {!node.nodes && <DocumentIcon className="ml-5 size-6 text-gray-600" />}
+        {node.name}
       </span>
 
       {isOpen && (
         <ul className="pl-6">
-          {folder.folders?.map((folder) => (
-            <Folder folder={folder} key={folder.name} />
+          {node.nodes?.map((node) => (
+            <FileSystemItem node={node} key={node.name} />
           ))}
         </ul>
       )}
