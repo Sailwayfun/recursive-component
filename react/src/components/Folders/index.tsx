@@ -31,7 +31,7 @@ export default function Folders() {
   );
 }
 
-function Folder({ folder }) {
+function Folder({ folder }: { folder: Folder }) {
   return (
     <li className="my-1.5" key={folder.name}>
       <span className="flex items-center gap-1.5">
