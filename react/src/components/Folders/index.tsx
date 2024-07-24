@@ -46,12 +46,13 @@ function Folder({ folder }: { folder: Folder }) {
     <li className="my-1.5" key={folder.name}>
       <span className="flex items-center gap-1.5">
         {folder.folders && folder.folders.length > 0 && (
-          <ChevronRightIcon
-            className={`size-4 cursor-pointer transition-transform ${
-              isOpen && "rotate-90"
-            }`}
-            onClick={toggleChildren}
-          />
+          <button onClick={toggleChildren}>
+            <ChevronRightIcon
+              className={`ml-5 size-4 cursor-pointer transition-transform ${
+                isOpen && "rotate-90"
+              }`}
+            />
+          </button>
         )}
         {folder.folders && <FolderIcon className="size-6 text-sky-600" />}
         {!folder.folders && <DocumentIcon className="size-6 text-gray-600" />}
