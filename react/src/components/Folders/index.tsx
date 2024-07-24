@@ -1,4 +1,5 @@
 import { FolderIcon } from "@heroicons/react/24/solid";
+import { DocumentIcon } from "@heroicons/react/24/solid";
 
 interface Folder {
   name: string;
@@ -13,8 +14,8 @@ const folders: Folder[] = [
         name: "Movies",
         folders: [{ name: "Kimi No Na Wa" }, { name: "Weathering with You" }],
       },
-      { name: "Music" },
-      { name: "Pictures" },
+      { name: "Music", folders: [] },
+      { name: "Pictures", folders: [{ name: "pikachu.jpg" }] },
     ],
   },
 ];
@@ -35,7 +36,8 @@ function Folder({ folder }: { folder: Folder }) {
   return (
     <li className="my-1.5" key={folder.name}>
       <span className="flex items-center gap-1.5">
-        <FolderIcon className="size-6 text-sky-600" />
+        {folder.folders && <FolderIcon className="size-6 text-sky-600" />}
+        {!folder.folders && <DocumentIcon className="size-6 text-gray-600" />}
         {folder.name}
       </span>
 
