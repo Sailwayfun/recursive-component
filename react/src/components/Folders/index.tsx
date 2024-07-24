@@ -1,5 +1,8 @@
 import { FolderIcon } from "@heroicons/react/24/solid";
 import { DocumentIcon } from "@heroicons/react/24/solid";
+import { ChevronRightIcon } from "@heroicons/react/16/solid";
+
+import { useState } from "react";
 
 interface Folder {
   name: string;
@@ -33,19 +36,33 @@ export default function Folders() {
 }
 
 function Folder({ folder }: { folder: Folder }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function toggleChildren() {
+    setIsOpen((o) => !o);
+  }
+
   return (
     <li className="my-1.5" key={folder.name}>
       <span className="flex items-center gap-1.5">
+        {folder.folders && folder.folders.length > 0 && (
+          <ChevronRightIcon
+            className={`size-4 ${isOpen && "rotate-90"}`}
+            onClick={toggleChildren}
+          />
+        )}
         {folder.folders && <FolderIcon className="size-6 text-sky-600" />}
         {!folder.folders && <DocumentIcon className="size-6 text-gray-600" />}
         {folder.name}
       </span>
 
-      <ul className="pl-6">
-        {folder.folders?.map((folder) => (
-          <Folder folder={folder} key={folder.name} />
-        ))}
-      </ul>
+      {isOpen && (
+        <ul className="pl-6">
+          {folder.folders?.map((folder) => (
+            <Folder folder={folder} key={folder.name} />
+          ))}
+        </ul>
+      )}
     </li>
   );
 }
