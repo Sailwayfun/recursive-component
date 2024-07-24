@@ -22,8 +22,32 @@ const folders: Node[] = [
         name: 'Movies',
         nodes: [{ name: 'Kimi No Na Wa' }, { name: 'Weathering with You' }]
       },
-      { name: 'Music', nodes: [] },
-      { name: 'Pictures', nodes: [] }
+      {
+        name: 'Music',
+        nodes: [
+          {
+            name: 'anime songs',
+            nodes: [
+              {
+                name: 'Golden Wind'
+              },
+              { name: 'Sono Chi No Sadame' }
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Pictures',
+        nodes: [
+          {
+            name: 'makima.jpg'
+          }
+        ]
+      },
+      {
+        name: 'Food',
+        nodes: []
+      }
     ]
   }
 ]
