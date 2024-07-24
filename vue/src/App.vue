@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import FolderList from '@/components/Folders/FolderList.vue'
+</script>
 
 <template>
   <header>
@@ -7,7 +9,9 @@
     </div>
   </header>
 
-  <main></main>
+  <main>
+    <FolderList />
+  </main>
 </template>
 
 <style scoped>
