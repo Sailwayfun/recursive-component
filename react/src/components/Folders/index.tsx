@@ -47,7 +47,9 @@ function Folder({ folder }: { folder: Folder }) {
       <span className="flex items-center gap-1.5">
         {folder.folders && folder.folders.length > 0 && (
           <ChevronRightIcon
-            className={`size-4 ${isOpen && "rotate-90"}`}
+            className={`size-4 cursor-pointer transition-transform ${
+              isOpen && "rotate-90"
+            }`}
             onClick={toggleChildren}
           />
         )}
