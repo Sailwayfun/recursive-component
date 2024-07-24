@@ -54,7 +54,13 @@ function Folder({ folder }: { folder: Folder }) {
             />
           </button>
         )}
-        {folder.folders && <FolderIcon className="size-6 text-sky-600" />}
+        {folder.folders && (
+          <FolderIcon
+            className={`size-6 text-sky-600 ${
+              folder.folders.length === 0 && "ml-[1.4rem]"
+            }`}
+          />
+        )}
         {!folder.folders && (
           <DocumentIcon className="ml-5 size-6 text-gray-600" />
         )}
